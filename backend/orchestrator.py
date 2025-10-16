@@ -25,8 +25,8 @@ except ModuleNotFoundError:
 
 
 # Import RAG system
-from rag.retriever import RAGSystem
-from rag.indexer import DocumentIndexer
+from backend.rag.retriever import RAGSystem
+from backend.rag.indexer import DocumentIndexer
 
 
 class OptimizerOrchestrator:
@@ -559,5 +559,6 @@ if __name__ == "__main__":
         
     except Exception as e:
         print(f"Failed to initialize orchestrator: {e}")
+
 
 
