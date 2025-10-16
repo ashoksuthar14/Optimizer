@@ -7,12 +7,23 @@ import concurrent.futures
 from dotenv import load_dotenv
 
 # Import all agents
-from agents.blueprint_agent import BlueprintAgent
-from agents.crawler_agent import CrawlerAgent 
-from agents.optimizer_agent import OptimizerAgent
-from agents.echo_agent import EchoAgent
-from agents.synthesis_agent import SynthesisAgent
-from agents.analysis_agent import AnalysisAgent
+try:
+    
+    from backend.agents.blueprint_agent import BlueprintAgent
+    from backend.agents.crawler_agent import CrawlerAgent 
+    from backend.agents.optimizer_agent import OptimizerAgent
+    from backend.agents.echo_agent import EchoAgent
+    from backend.agents.synthesis_agent import SynthesisAgent
+    from backend.agents.analysis_agent import AnalysisAgent
+except ModuleNotFoundError:
+    from agents.blueprint_agent import BlueprintAgent
+    from agents.crawler_agent import CrawlerAgent 
+    from agents.optimizer_agent import OptimizerAgent
+    from agents.echo_agent import EchoAgent
+    from agents.synthesis_agent import SynthesisAgent
+    from agents.analysis_agent import AnalysisAgent
+
+
 
 # Import RAG system
 from rag.retriever import RAGSystem
@@ -549,3 +560,4 @@ if __name__ == "__main__":
         
     except Exception as e:
         print(f"Failed to initialize orchestrator: {e}")
+
