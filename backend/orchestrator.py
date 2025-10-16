@@ -7,8 +7,7 @@ import concurrent.futures
 from dotenv import load_dotenv
 
 # Import all agents
-try:
-    
+try:  
     from backend.agents.blueprint_agent import BlueprintAgent
     from backend.agents.crawler_agent import CrawlerAgent 
     from backend.agents.optimizer_agent import OptimizerAgent
@@ -560,4 +559,5 @@ if __name__ == "__main__":
         
     except Exception as e:
         print(f"Failed to initialize orchestrator: {e}")
+
 
