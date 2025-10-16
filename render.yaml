@@ -2,10 +2,10 @@ services:
   - type: web
     name: ai-optimizer-backend
     env: python
-    rootDirectory: .
+    rootDirectory: backend
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn -w 1 -k gthread -t 300 --timeout 300 --graceful-timeout 300 -b 0.0.0.0:$PORT backend.wsgi:app
+    buildCommand: pip install -r ../requirements.txt
+    startCommand: gunicorn -w 1 -k gthread -t 300 --timeout 300 --graceful-timeout 300 -b 0.0.0.0:$PORT wsgi:app
     autoDeploy: true
     healthCheckPath: /api/health
     envVars:
