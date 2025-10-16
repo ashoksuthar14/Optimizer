@@ -1,0 +1,61 @@
+
+    # Weekly Team Meeting Transcript - October 15, 2023
+
+    **Attendees:** Sarah (CEO), Mike (CTO), Lisa (Head of Product), Tom (Lead Developer)
+
+    **Sarah:** Good morning everyone. Let's start with product development updates. Lisa, how are we doing with the MVP features?
+
+    **Lisa:** We're making good progress. The core dashboard is about 80% complete. Users can now see real-time waste levels and basic analytics. The mobile app wireframes are done and Tom's team has started development.
+
+    **Tom:** Yes, the mobile app foundation is solid. We're using React Native which will let us deploy to both iOS and Android simultaneously. The sensor integration is working well in our test environment.
+
+    **Mike:** I want to flag a technical concern about the sensor connectivity. We've had some intermittent WiFi issues in our restaurant pilot. I think we need a backup cellular connection for reliability.
+
+    **Sarah:** That's a good point. What would that add to our hardware costs?
+
+    **Mike:** About $15 per unit for the cellular module, plus ongoing data costs. But it would guarantee uptime which is critical for customer trust.
+
+    **Lisa:** From a product perspective, I agree reliability is crucial. Our early customers are very sensitive to any service interruptions.
+
+    **Sarah:** Okay, let's plan for cellular backup. What about our pilot customer feedback?
+
+    **Lisa:** Mixed but overall positive. They love the real-time visibility into waste levels. The biggest request is for predictive analytics - they want to know when bins will be full before they overflow.
+
+    **Tom:** We have the data to do that. I can build a simple ML model based on historical patterns and current fill rates.
+
+    **Mike:** That's actually a great differentiator. Most competitors only offer monitoring, not prediction.
+
+    **Sarah:** Excellent. Let's prioritize that for the next sprint. What about our partnership discussions with WasteTrack Industries?
+
+    **Lisa:** They're very interested in integrating our platform with their pickup routes. They see value in optimizing their truck schedules based on our real-time data.
+
+    **Sarah:** That could be huge for scaling. Instead of selling directly to restaurants, we could go through waste management companies.
+
+    **Mike:** We'd need to modify our API to support their systems, but it's definitely doable.
+
+    **Tom:** I can start working on the API documentation and integration specs.
+
+    **Sarah:** Great. Let's also think about pricing for B2B2C models. We might need different pricing tiers.
+
+    **Lisa:** I've been researching that. Revenue sharing with waste management partners seems to be the standard approach.
+
+    **Sarah:** Let's set up a meeting with WasteTrack next week to discuss specifics. Any other issues we need to address?
+
+    **Mike:** We should discuss the sustainability metrics dashboard. Customers are asking for carbon footprint calculations and waste diversion rates.
+
+    **Tom:** That would require some complex calculations but it's technically feasible. We'd need to partner with environmental data providers.
+
+    **Lisa:** It would definitely strengthen our value proposition, especially for environmentally conscious businesses.
+
+    **Sarah:** Add it to the roadmap for Q2. We want to be seen as the comprehensive sustainability solution, not just waste monitoring.
+
+    **Mike:** One more thing - we should consider open-sourcing some of our IoT sensor firmware. It could help with adoption and community building.
+
+    **Sarah:** Interesting idea. Let's research the implications and discuss next week.
+
+    **Lisa:** I'll put together a competitive analysis of open source vs. proprietary approaches in the IoT space.
+
+    **Sarah:** Perfect. Anything else? Alright, let's reconvene next Monday. Great work everyone!
+
+    **Meeting ended at 10:45 AM**
+    

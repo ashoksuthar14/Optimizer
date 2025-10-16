@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizer - AI-Powered Startup Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-brain"></i> Optimizer</h1>
+                <p class="subtitle">AI-Powered Ideation, Optimization & EchoChamber Breaker for Startups</p>
+                <div class="status-indicator">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span class="status-text" id="status-text">Ready</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Section -->
+            <section class="input-section" id="input-section">
+                <div class="input-card">
+                    <h2><i class="fas fa-rocket"></i> Project Information</h2>
+                    
+                    <!-- Project Data Input -->
+                    <div class="form-group">
+                        <label for="project-data">Project Description *</label>
+                        <textarea id="project-data" placeholder="Describe your startup project in detail. Include your product/service, target market, key features, technology stack, budget, timeline, and any other relevant information..."></textarea>
+                    </div>
+
+                    <!-- Team Info -->
+                    <div class="form-group">
+                        <label for="team-info">Team Information</label>
+                        <textarea id="team-info" placeholder="Tell us about your team: size, roles, experience, background, etc."></textarea>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="form-group">
+                        <label for="file-upload">Upload Documents (Optional)</label>
+                        <div class="file-upload-area" id="file-upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drop files here or click to browse</p>
+                            <p class="file-types">Supported: PDF, DOCX, TXT (Max 16MB each)</p>
+                            <input type="file" id="file-upload" multiple accept=".pdf,.docx,.doc,.txt">
+                        </div>
+                        <div class="uploaded-files" id="uploaded-files"></div>
+                    </div>
+
+                    <!-- Transcripts -->
+                    <div class="form-group">
+                        <label for="transcripts">Meeting Transcripts (Optional)</label>
+                        <textarea id="transcripts" placeholder="Paste any meeting transcripts or additional context here..."></textarea>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="start-analysis" class="btn-primary">
+                            <i class="fas fa-play"></i> Start Analysis
+                        </button>
+                        <button id="clear-all" class="btn-secondary">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section class="progress-section hidden" id="progress-section">
+                <div class="progress-card">
+                    <h2><i class="fas fa-cogs"></i> Analysis Progress</h2>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    
+                    <div class="progress-info">
+                        <span class="current-step" id="current-step">Initializing...</span>
+                        <span class="progress-percent" id="progress-percent">0%</span>
+                    </div>
+
+                    <div class="agent-status">
+                        <div class="agent-step" id="step-indexing">
+                            <i class="fas fa-database"></i>
+                            <span>Document Indexing</span>
+                            <div class="step-status pending"></div>
+                        </div>
+                        <div class="agent-step" id="step-blueprint">
+                            <i class="fas fa-drafting-compass"></i>
+                            <span>Blueprint Generation</span>
+                            <div class="step-status pending"></div>
+                        </div>
+                        <div class="agent-step" id="step-research">
+                            <i class="fas fa-search"></i>
+                            <span>Market Research</span>
+                            <div class="step-status pending"></div>
+                        </div>
+                        <div class="agent-step" id="step-optimization">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Optimization Analysis</span>
+                            <div class="step-status pending"></div>
+                        </div>
+                        <div class="agent-step" id="step-echo">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>Echo Chamber Breaking</span>
+                            <div class="step-status pending"></div>
+                        </div>
+                        <div class="agent-step" id="step-synthesis">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Report Synthesis</span>
+                            <div class="step-status pending"></div>
+                        </div>
+                    </div>
+
+                    <button id="cancel-processing" class="btn-danger">
+                        <i class="fas fa-stop"></i> Cancel Analysis
+                    </button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section hidden" id="results-section">
+                <!-- Tab Navigation -->
+                <nav class="tab-nav">
+                    <button class="tab-btn active" data-tab="overview">
+                        <i class="fas fa-chart-pie"></i> Overview
+                    </button>
+                    <button class="tab-btn" data-tab="blueprint">
+                        <i class="fas fa-drafting-compass"></i> Blueprint
+                    </button>
+                    <button class="tab-btn" data-tab="market">
+                        <i class="fas fa-globe"></i> Market Research
+                    </button>
+                    <button class="tab-btn" data-tab="optimization">
+                        <i class="fas fa-chart-line"></i> Optimization
+                    </button>
+                    <button class="tab-btn" data-tab="challenges">
+                        <i class="fas fa-balance-scale"></i> Challenges
+                    </button>
+                    <button class="tab-btn" data-tab="synthesis">
+                        <i class="fas fa-file-alt"></i> Final Report
+                    </button>
+                    <button class="tab-btn" data-tab="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </button>
+                    <button class="tab-btn" data-tab="action-plan">
+                        <i class="fas fa-tasks"></i> Action Plan
+                    </button>
+                </nav>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Overview Tab -->
+                    <div class="tab-panel active" id="overview-panel">
+                        <div class="overview-grid">
+                            <div class="overview-card">
+                                <h3><i class="fas fa-info-circle"></i> Process Summary</h3>
+                                <div id="process-summary"></div>
+                            </div>
+                            <div class="overview-card">
+                                <h3><i class="fas fa-check-circle"></i> Agent Results</h3>
+                                <div id="agent-results"></div>
+                            </div>
+                            <div class="overview-card">
+                                <h3><i class="fas fa-clock"></i> Timeline</h3>
+                                <div id="processing-timeline"></div>
+                            </div>
+                            <div class="overview-card">
+                                <h3><i class="fas fa-download"></i> Export Options</h3>
+                                <div class="export-buttons">
+                                    <button class="btn-export" onclick="exportResults('pdf')">
+                                        <i class="fas fa-file-pdf"></i> PDF Report
+                                    </button>
+                                    <button class="btn-export" onclick="exportResults('json')">
+                                        <i class="fas fa-file-code"></i> JSON
+                                    </button>
+                                    <button class="btn-export" onclick="exportResults('summary')">
+                                        <i class="fas fa-file-alt"></i> Summary
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blueprint Tab -->
+                    <div class="tab-panel" id="blueprint-panel">
+                        <div class="content-card">
+                            <h3><i class="fas fa-drafting-compass"></i> Project Blueprint</h3>
+                            <div id="blueprint-content" class="content-area"></div>
+                        </div>
+                    </div>
+
+                    <!-- Market Research Tab -->
+                    <div class="tab-panel" id="market-panel">
+                        <div class="content-card">
+                            <h3><i class="fas fa-globe"></i> Market Research & Competitive Analysis</h3>
+                            <div id="market-content" class="content-area"></div>
+                        </div>
+                    </div>
+
+                    <!-- Optimization Tab -->
+                    <div class="tab-panel" id="optimization-panel">
+                        <div class="content-card">
+                            <h3><i class="fas fa-chart-line"></i> Optimization Recommendations</h3>
+                            <div id="optimization-content" class="content-area"></div>
+                        </div>
+                    </div>
+
+                    <!-- Challenges Tab -->
+                    <div class="tab-panel" id="challenges-panel">
+                        <div class="content-card">
+                            <h3><i class="fas fa-balance-scale"></i> Critical Challenges & Echo Chamber Analysis</h3>
+                            <div id="challenges-content" class="content-area"></div>
+                        </div>
+                    </div>
+
+                    <!-- Synthesis Tab -->
+                    <div class="tab-panel" id="synthesis-panel">
+                        <div class="content-card">
+                            <h3><i class="fas fa-file-alt"></i> Comprehensive Synthesis Report</h3>
+                            <div id="synthesis-content" class="content-area"></div>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard Tab -->
+                    <div class="tab-panel" id="dashboard-panel">
+                        <div class="content-card">
+                            <h3><i class="fas fa-tachometer-alt"></i> Executive Dashboard</h3>
+                            <div id="dashboard-content" class="content-area"></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Plan Tab -->
+                    <div class="tab-panel" id="action-plan-panel">
+                        <div class="content-card">
+                            <h3><i class="fas fa-tasks"></i> Implementation Action Plan</h3>
+                            <div id="action-plan-content" class="content-area"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Actions -->
+                <div class="results-actions">
+                    <button id="new-analysis" class="btn-primary">
+                        <i class="fas fa-plus"></i> New Analysis
+                    </button>
+                    <button id="save-results" class="btn-secondary">
+                        <i class="fas fa-save"></i> Save Results
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-brain fa-spin"></i>
+            <p>AI agents are working...</p>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal hidden" id="error-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Error</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="error-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="closeModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
