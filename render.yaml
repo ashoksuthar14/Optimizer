@@ -5,7 +5,7 @@ services:
     rootDirectory: .
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn -w 1 -k gthread -t 180 -b 0.0.0.0:$PORT wsgi:app
+    startCommand: gunicorn -w 1 -k gthread -t 180 -b 0.0.0.0:$PORT backend.wsgi:app
     autoDeploy: true
     healthCheckPath: /api/health
     envVars:
@@ -21,3 +21,4 @@ services:
         sync: false
       - key: SERPAPI_KEY
         sync: false
+
