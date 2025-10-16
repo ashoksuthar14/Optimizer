@@ -8,7 +8,8 @@ from werkzeug.utils import secure_filename
 import threading
 import time
 
-from orchestrator import OptimizerOrchestrator
+from backend.orchestrator import OptimizerOrchestrator
+
 
 # Initialize Flask app
 app = Flask(__name__, 
@@ -447,3 +448,4 @@ if __name__ == '__main__':
         print("- GEMINI_API_KEY_5 (Synthesis Agent)")
 
         print("- SERPAPI_KEY (Market Research)")
+
