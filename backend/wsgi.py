@@ -1,5 +1,15 @@
-from app import app, initialize_orchestrator
 import os
+
+# Support both invocation modes:
+# - backend.wsgi:app (repo root)
+# - wsgi:app (with root set to backend)
+try:
+    from .app import app, initialize_orchestrator  # when imported as backend.wsgi
+except Exception:
+    try:
+        from app import app, initialize_orchestrator  # when CWD is backend
+    except Exception:
+        from backend.app import app, initialize_orchestrator  # when importing from repo root
 
 # Optional: initialize orchestrator on startup if explicitly enabled
 if os.getenv("INIT_ORCH_ON_STARTUP") == "1":
