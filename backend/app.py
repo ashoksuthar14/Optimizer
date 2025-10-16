@@ -8,7 +8,11 @@ from werkzeug.utils import secure_filename
 import threading
 import time
 
-from backend.orchestrator import OptimizerOrchestrator
+try:
+    from backend.orchestrator import OptimizerOrchestrator
+except ModuleNotFoundError:
+    from orchestrator import OptimizerOrchestrator
+
 
 
 # Initialize Flask app
@@ -448,4 +452,5 @@ if __name__ == '__main__':
         print("- GEMINI_API_KEY_5 (Synthesis Agent)")
 
         print("- SERPAPI_KEY (Market Research)")
+
 
