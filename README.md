@@ -2,6 +2,7 @@
 
 > **Optimizer** is an AI-powered ideation, optimization, and self-challenge assistant for small startups — acting like an intelligent co-founder who researches, optimizes, and challenges your ideas with data-driven insights.
 
+### [Video Demo](https://www.youtube.com/watch?v=YKX5dkYCf1w&feature=youtu.be)  
 ---
 
 ## 🚨 Problem Statement
@@ -14,6 +15,8 @@ Small startups often face:
 ---
 
 ## 💡 Solution
+
+<img src="images/home page.png" alt="AskMe Pro Chat Interface" />  
 
 **Optimizer** acts as an **AI Co-Founder** that:
 - 🧩 Builds **blueprints, flowcharts**, and **project architectures**
@@ -32,6 +35,8 @@ Optimizer follows a **multi-agent orchestrated architecture** built with **LangC
 Each agent performs a distinct task, coordinated by the **Orchestrator**.
 
 
+
+
 ### 🔹 Core Components
 
 | Agent | Role | Description |
@@ -42,13 +47,15 @@ Each agent performs a distinct task, coordinated by the **Orchestrator**.
 | ⚔️ **EchoAgent** | Challenge | Acts as devil’s advocate to find blind spots and biases |
 | 🧩 **SynthesisAgent** | Reporting | Merges all results into a structured final report |
 
+
+
 ---
 
 ### 🧭 Flow Diagram
 
 > **Flow Summary:** Upload → Index → Retrieve → Parallel Agents → Synthesis → Report
 
-![Architecture Diagram Placeholder](./docs/optimizer_architecture.png)
+<img src="images/optimizer flwochart.png" alt="AskMe Pro Chat Interface" />  
 
 *(You can replace the above placeholder with your flowchart image — the one you drew.)*
 
@@ -76,6 +83,7 @@ Each agent performs a distinct task, coordinated by the **Orchestrator**.
 - Context-aware using **RAG (Retrieval-Augmented Generation)**
 
 ### 🔸 Flow
+
 
 
 - Steps:
@@ -111,22 +119,32 @@ Each agent performs a distinct task, coordinated by the **Orchestrator**.
 - Model: `gemini-2.5-flash`
 - Output: ASCII architecture diagram + detailed explanation
 
+  <img src="images/blueprint.png" alt="AskMe Pro Chat Interface" />  
+
 ### 🕵️ CrawlerAgent
 - Tools: SerpAPI + GitHub API
 - Finds: GitHub repos, academic papers, trends
 - Stores results in `data/crawler_results.json`
 
+  <img src="images/market_research.png" alt="AskMe Pro Chat Interface" />  
+
 ### 🧠 OptimizerAgent
 - Uses RAG context for targeted improvement suggestions
 - Optimizes architecture, cost, scalability, and strategy
+
+  <img src="images/optimizer.png" alt="AskMe Pro Chat Interface" />  
 
 ### ⚔️ EchoAgent
 - Simulates contrarian viewpoint
 - Detects weak assumptions, risks, and echo chambers
 
+  <img src="images/echochamber.png" alt="AskMe Pro Chat Interface" />  
+
 ### 🧩 SynthesisAgent
 - Merges all results into a structured, multi-section report
 - Generates PDF + dashboard via `ReportLab`
+
+<img src="images/report.png" alt="AskMe Pro Chat Interface" />  
 
 ---
 
@@ -213,6 +231,7 @@ optimizer/
 └─ requirements.txt
 
 ```
+
 
 
 
