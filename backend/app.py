@@ -90,7 +90,8 @@ def health_check():
         "orchestrator_ready": orchestrator is not None
     })
 
-n# Optional orchestrator initialization endpoint (useful on Render)
+
+# Optional orchestrator initialization endpoint (useful on Render)
 @app.route('/api/init', methods=['POST', 'GET'])
 def init_orchestrator():
     """Initialize the orchestrator on demand."""
@@ -444,4 +445,5 @@ if __name__ == '__main__':
         print("- GEMINI_API_KEY_3 (Optimizer Agent)")
         print("- GEMINI_API_KEY_4 (Echo Agent)")
         print("- GEMINI_API_KEY_5 (Synthesis Agent)")
+
         print("- SERPAPI_KEY (Market Research)")
