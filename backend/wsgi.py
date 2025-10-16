@@ -1,31 +1,29 @@
 import os
 
-# Support both invocation modes:
-# - backend.wsgi:app (repo root)
-# - wsgi:app (with root set to backend)
+# Import the Flask app and orchestrator initializer
 try:
-    from .app import app, initialize_orchestrator  # when imported as backend.wsgi
-except Exception:
-    try:
-        from app import app, initialize_orchestrator  # when CWD is backend
-    except Exception:
-        from backend.app import app, initialize_orchestrator  # when importing from repo root
+    from backend.app import app, initialize_orchestrator
+except ImportError:
+    from app import app, initialize_orchestrator  # fallback for local runs
 
-# Optional: initialize orchestrator on startup if explicitly enabled
-if os.getenv("INIT_ORCH_ON_STARTUP") == "1":
+# Initialize orchestrator on startup if enabled
+if os.getenv("INIT_ORCH_ON_STARTUP", "1") == "1":
     try:
         initialize_orchestrator()
+        print("✅ Orchestrator initialized successfully.")
     except Exception as e:
-        # Avoid crashing the worker on init errors; endpoints will report the issue
-        print(f"Orchestrator init on import failed: {e}")
+        print(f"⚠️ Orchestrator initialization failed: {e}")
 
-# Expose `app` for Gunicorn
-# Start locally if needed: `python wsgi.py`
+# Expose the Flask app for Gunicorn
+application = app  # optional alias, Gunicorn uses `app` below
+app = app  # keep this line so gunicorn backend.wsgi:app works
+
+# Optional local dev mode
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", "5000"))
-    # For local dev, initialize orchestrator once
+    port = int(os.environ.get("PORT", 5000))
+    print(f"🚀 Starting Flask locally on 0.0.0.0:{port}")
     try:
         initialize_orchestrator()
     except Exception as e:
-        print(f"Local init failed: {e}")
+        print(f"⚠️ Local orchestrator init failed: {e}")
     app.run(host="0.0.0.0", port=port)
