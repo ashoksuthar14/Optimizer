@@ -412,44 +412,42 @@ def not_found(e):
 
 
 if __name__ == '__main__':
+    import os
     print("Starting Optimizer Flask Application...")
-    
+
     # Initialize orchestrator
     if initialize_orchestrator():
         print("✓ Orchestrator ready")
-        
+
         # Test agents on startup
         try:
             test_results = orchestrator.test_agents()
             successful = test_results["summary"]["successful"]
             total = test_results["summary"]["total_agents"]
-            
+
             if successful == total:
                 print(f"✓ All {total} agents tested successfully")
             else:
                 print(f"⚠ {successful}/{total} agents working properly")
-                
+
         except Exception as e:
             print(f"⚠ Agent testing failed: {e}")
-        
-        # Start Flask app
-        print("\n🚀 Starting Flask server...")
+
+        # Determine port for Render or local
+        port = int(os.environ.get("PORT", 5000))
+        print(f"\n🚀 Starting Flask server on 0.0.0.0:{port}")
         print("📱 Frontend available at: http://localhost:5000")
         print("🔧 API available at: http://localhost:5000/api/*")
-        print("\n" + "="*50)
-        
-        app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
-        
+        print("\n" + "=" * 50)
+
+        app.run(host='0.0.0.0', port=port, debug=False, threaded=True)
+
     else:
         print("❌ Failed to initialize orchestrator. Check your API keys in .env file")
         print("\nRequired environment variables:")
         print("- GEMINI_API_KEY_1 (Blueprint Agent)")
-        print("- GEMINI_API_KEY_2 (Crawler Agent)")  
+        print("- GEMINI_API_KEY_2 (Crawler Agent)")
         print("- GEMINI_API_KEY_3 (Optimizer Agent)")
         print("- GEMINI_API_KEY_4 (Echo Agent)")
         print("- GEMINI_API_KEY_5 (Synthesis Agent)")
-
         print("- SERPAPI_KEY (Market Research)")
-
-
-
