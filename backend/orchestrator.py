@@ -13,7 +13,7 @@ from backend.agents.crawler_agent import CrawlerAgent
 from backend.agents.optimizer_agent import OptimizerAgent
 from backend.agents.echo_agent import EchoAgent
 from backend.agents.synthesis_agent import SynthesisAgent
- from backend.agents.analysis_agent import AnalysisAgent
+from backend.agents.analysis_agent import AnalysisAgent
 
 
 
@@ -553,6 +553,7 @@ if __name__ == "__main__":
         
     except Exception as e:
         print(f"Failed to initialize orchestrator: {e}")
+
 
 
 
